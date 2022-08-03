@@ -20,6 +20,7 @@ import { UsersListComponent } from './pages/users/users-list/users-list.componen
 import { UsersFormComponent } from './pages/users/users-form/users-form.component';
 import { OrdersListComponent } from './pages/orders/orders-list/orders-list.component';
 import { OrdersDetailsComponent } from './pages/orders/orders-details/orders-details.component';
+import { UsersModule } from '@ecommerce/users';
 
 @NgModule({
   declarations: [AppComponent, DashboardComponent, ShellComponent, SidebarComponent, CategoriesListComponent, CategoriesFormComponent, ProductsListComponent, ProductsFormComponent, UsersListComponent, UsersFormComponent, OrdersListComponent, OrdersDetailsComponent],
@@ -30,6 +31,7 @@ import { OrdersDetailsComponent } from './pages/orders/orders-details/orders-det
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    UsersModule,
     NgprimeModule
   ],
   providers: [MessageService, ConfirmationService],
