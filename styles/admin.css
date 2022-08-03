@@ -11,6 +11,7 @@
 
 /* apps */
 @import url('./apps/admin/shell.css');
+@import url('./apps/admin/dashboard.css');
 
 /** */
 @import url('./libs/users/users.css');
