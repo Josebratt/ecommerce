@@ -14,7 +14,14 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@ecommerce/orders": ["libs/orders/src/index.ts"],
+      "@ecommerce/products": ["libs/products/src/index.ts"],
+      "@ecommerce/ui": ["libs/ui/src/index.ts"],
+      "@ecommerce/users": ["libs/users/src/index.ts"],
+      "@env/*":["environments/*"]
+      
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
