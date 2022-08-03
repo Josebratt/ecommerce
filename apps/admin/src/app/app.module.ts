@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RoutingModule } from './routing.routes';
 import { NgprimeModule } from './ngprime/ngprime.module';
 
@@ -20,7 +20,7 @@ import { UsersListComponent } from './pages/users/users-list/users-list.componen
 import { UsersFormComponent } from './pages/users/users-form/users-form.component';
 import { OrdersListComponent } from './pages/orders/orders-list/orders-list.component';
 import { OrdersDetailsComponent } from './pages/orders/orders-details/orders-details.component';
-import { UsersModule } from '@ecommerce/users';
+import { JwtInterceptor, UsersModule } from '@ecommerce/users';
 
 @NgModule({
   declarations: [AppComponent, DashboardComponent, ShellComponent, SidebarComponent, CategoriesListComponent, CategoriesFormComponent, ProductsListComponent, ProductsFormComponent, UsersListComponent, UsersFormComponent, OrdersListComponent, OrdersDetailsComponent],
@@ -34,7 +34,7 @@ import { UsersModule } from '@ecommerce/users';
     UsersModule,
     NgprimeModule
   ],
-  providers: [MessageService, ConfirmationService],
+  providers: [MessageService, ConfirmationService, {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
