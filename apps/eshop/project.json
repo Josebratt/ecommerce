@@ -1,7 +1,7 @@
 {
   "projectType": "application",
   "sourceRoot": "apps/eshop/src",
-  "prefix": "ecommerce",
+  "prefix": "eshop",
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
