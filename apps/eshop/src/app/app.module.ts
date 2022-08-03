@@ -11,6 +11,7 @@ import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { PrimengModule } from './primeng/primeng.module';
 
+
 const routes: Routes = [
   { path: '', component: HomePageComponent },
 ]
