@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -7,6 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 import { LocalstorageService } from '../../services/localstorage.service';
 
@@ -15,11 +16,12 @@ import { LocalstorageService } from '../../services/localstorage.service';
   templateUrl: './login.component.html',
   styles: [],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   loginFormGroup!: FormGroup;
   isSubmitted = false;
   authError = false;
   authMessage = 'Email or Password are wrong';
+  endsubs$: Subject<unknown> = new Subject();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -30,6 +32,11 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this._initLoginForm();
+  }
+
+  ngOnDestroy(): void {
+    this.endsubs$.next(true);
+    this.endsubs$.complete();
   }
 
   private _initLoginForm() {
@@ -49,10 +56,9 @@ export class LoginComponent implements OnInit {
         this.formControl['email'].value,
         this.formControl['passwordHash'].value
       )
+      .pipe(takeUntil(this.endsubs$))
       .subscribe({
-        next: (user) => {
-          console.log('el frontend envia: ', user);
-          
+        next: (user) => {         
           this.authError = false;
           this.localstorageService.setToken(user.token);
           this.router.navigate(['/']);
