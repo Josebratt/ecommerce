@@ -10,11 +10,13 @@ import { UsersListComponent } from "./pages/users/users-list/users-list.componen
 import { ProductsFormComponent } from "./products/products-form/products-form.component";
 import { ProductsListComponent } from "./products/products-list/products-list.component";
 import { ShellComponent } from "./shared/shell/shell.component";
+import { AuthGuard } from '@ecommerce/users';
 
 const routes: Routes = [
     {
       path: '', 
       component: ShellComponent,
+      canActivate: [AuthGuard],
       children: [
         { path: '', component: DashboardComponent },
         { path: 'categories', component: CategoriesListComponent },
@@ -30,6 +32,7 @@ const routes: Routes = [
         { path: 'orders/:id', component: OrdersDetailsComponent },
       ]
     },
+    { path: '**', pathMatch: 'full', redirectTo: '' }
   ]
 
 @NgModule({
