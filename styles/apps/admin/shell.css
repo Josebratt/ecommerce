@@ -58,6 +58,7 @@
 
 .admin-sidebar .links ul li a.logout {
     color: #4a97e9;
+    cursor: pointer;
 }
 
 .admin-sidebar .links ul li a.active {
