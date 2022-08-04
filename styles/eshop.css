@@ -2,13 +2,14 @@
 @import url('../node_modules/normalize.css/normalize.css');
 @import url('./base/fonts.css');
 
-/* libraries */
+/* libraries external */
 @import url('../node_modules/primeicons/primeicons.css');
 @import url('../node_modules/primeng/resources/themes/saga-blue/theme.css');
 @import url('../node_modules/primeng/resources/primeng.min.css');
 @import url('../node_modules/primeflex/primeflex.min.css');
 @import url('./base/configuration.css');
 @import url('../node_modules/animate.css/animate.min.css');
+
 /* pages */
 @import url('./apps/eshop/pages/home-pages.css');
 @import url('./apps/eshop/pages/product-list.css');
@@ -17,10 +18,11 @@
 @import url('./apps/eshop/shared/header.css');
 @import url('./apps/eshop/shared/footer.css');
 @import url('./apps/eshop/shared/nav.css');
-@import url('./libs/products/products-search.css');
+/* @import url('./libs/products/products-search.css'); */
 
-/* */
+/* Apps libraries */
 @import url('./libs/ui/ui.css');
+@import url('./libs/products/products.css');
 
 .container {
     width: 1200px;
