@@ -10,6 +10,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { PrimengModule } from './primeng/primeng.module';
+import { NavComponent } from './shared/nav/nav.component';
+
+import { UiModule } from '@ecommerce/ui';
+import { ProductsModule } from '@ecommerce/products';
 
 
 const routes: Routes = [
@@ -17,12 +21,14 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [AppComponent, HomePageComponent, HeaderComponent, FooterComponent],
+  declarations: [AppComponent, HomePageComponent, HeaderComponent, FooterComponent, NavComponent],
   imports: [
     BrowserModule, 
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
+    ProductsModule,
+    UiModule,
     PrimengModule
   ],
   providers: [],
