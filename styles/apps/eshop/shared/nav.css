@@ -1,0 +1,25 @@
+.nav li {
+  list-style: none;
+  display: block;
+  margin-right: 15px;
+  padding-top: 15px;
+}
+.nav li a {
+  color: var(--surface-500);
+  cursor: pointer;
+}
+.nav li a:hover {
+  color: #ff3a00;
+}
+.nav li {
+  list-style: none;
+  display: inline-block;
+  margin-right: 15px;
+}
+.nav li a {
+  color: var(--surface-500);
+  cursor: pointer;
+}
+.nav li a:hover {
+  color: #ff3a00;
+}
