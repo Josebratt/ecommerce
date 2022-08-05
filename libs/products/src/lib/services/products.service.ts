@@ -20,7 +20,7 @@ export class ProductsService {
 
   getProducts(categoriesFilter?: string[]): Observable<Product[]> {
     let params = new HttpParams();
-    if (categoriesFilter) {
+    if (categoriesFilter) {     
       params = params.append('categories', categoriesFilter.join(','));
     }
     return this.http.get<Product[]>(this.apiURLProducts, { params: params });
