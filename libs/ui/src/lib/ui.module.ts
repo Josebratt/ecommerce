@@ -2,14 +2,18 @@ import { NgModule } from '@angular/core';
 import { BannerComponent } from './components/banner/banner.component';
 
 import { ButtonModule } from 'primeng/button';
+import { GalleryComponent } from './components/gallery/gallery.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
-  imports: [ButtonModule],
+  imports: [ CommonModule, ButtonModule],
   exports: [
-    BannerComponent
+    BannerComponent,
+    GalleryComponent
   ],
   declarations: [
-    BannerComponent
+    BannerComponent,
+    GalleryComponent
   ]
 })
 export class UiModule {}
