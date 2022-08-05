@@ -14,16 +14,25 @@ import { ProductItemComponent } from './components/product-item/product-item.com
 import { FeaturedProductsComponent } from './components/featured-products/featured-products.component';
 import { ProductsListComponent } from './pages/products-list/products-list.component';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
+import { UiModule } from '@ecommerce/ui';
 
 const routes: Routes = [
   { path: 'products', component: ProductsListComponent },
   { path: 'category/:categoryid', component: ProductsListComponent },
-  { path: 'products/:productId', component: ProductDetailsComponent }
-]
-
+  { path: 'products/:productId', component: ProductDetailsComponent },
+];
 
 @NgModule({
-  imports: [CommonModule, RouterModule.forChild(routes), FormsModule, ButtonModule, CheckboxModule, RatingModule, InputNumberModule],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    FormsModule,
+    UiModule,
+    ButtonModule,
+    CheckboxModule,
+    RatingModule,
+    InputNumberModule,
+  ],
   declarations: [
     ProductsSearchComponent,
     CategoriesBannerComponent,
@@ -39,6 +48,6 @@ const routes: Routes = [
     FeaturedProductsComponent,
     ProductsListComponent,
     ProductDetailsComponent,
-  ]
+  ],
 })
 export class ProductsModule {}
