@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
 import { Observable } from 'rxjs';
@@ -6,24 +6,24 @@ import { map } from 'rxjs/operators';
 import { Product } from '../models/product';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProductsService {
-
   apiURLProducts = environment.apiURL + 'products';
 
-  constructor(
-    private http: HttpClient
-  ) { }
+  constructor(private http: HttpClient) {}
 
   // get data
-  getCategories(): Observable<Product[]> {
+  /*   getCategories(): Observable<Product[]> {
     return this.http.get<Product[]>(this.apiURLProducts);
-  }
+  } */
 
-  // get Id for update
-  getProduct(productId: string): Observable<Product> {
-    return this.http.get<Product>(`${this.apiURLProducts}/${productId}`);
+  getProducts(categoriesFilter?: string[]): Observable<Product[]> {
+    let params = new HttpParams();
+    if (categoriesFilter) {
+      params = params.append('categories', categoriesFilter.join(','));
+    }
+    return this.http.get<Product[]>(this.apiURLProducts, { params: params });
   }
 
   //create data
@@ -31,9 +31,17 @@ export class ProductsService {
     return this.http.post<Product>(this.apiURLProducts, productData);
   }
 
+  // get Id for update
+  getProduct(productId: string): Observable<Product> {
+    return this.http.get<Product>(`${this.apiURLProducts}/${productId}`);
+  }
+
   // update data
   updateProduct(productData: FormData, productId: string): Observable<Product> {
-    return this.http.put<Product>(`${this.apiURLProducts}/${productId}`, productData);
+    return this.http.put<Product>(
+      `${this.apiURLProducts}/${productId}`,
+      productData
+    );
   }
 
   //delete data
@@ -50,6 +58,8 @@ export class ProductsService {
 
   //
   getFeaturedProducts(count: number): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.apiURLProducts}/get/featured/${count}`);
+    return this.http.get<Product[]>(
+      `${this.apiURLProducts}/get/featured/${count}`
+    );
   }
 }
