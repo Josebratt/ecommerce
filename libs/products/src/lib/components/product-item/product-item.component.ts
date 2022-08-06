@@ -1,5 +1,5 @@
-import { CartItem } from './../../../../../orders/src/lib/models/cart';
-import { CartService } from '@ecommerce/orders';
+
+import { CartItem, CartService } from '@ecommerce/orders';
 import { Component, Input, OnInit } from '@angular/core';
 import { Product } from '../../models/product';
 
@@ -16,10 +16,10 @@ export class ProductItemComponent implements OnInit {
   ngOnInit(): void {}
 
   addProductToCart() {
-   /*  const cartItem: CartItem = {
+    const cartItem: CartItem = {
       productId: this.product.id,
       quantity: 1,
-    }; */
-/*     this.cartService.setCartItem(cartItem); */
+    };
+    this.cartService.setCartItem(cartItem);
   }
 }
