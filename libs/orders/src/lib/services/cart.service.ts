@@ -14,24 +14,21 @@ export class CartService {
   /** we initial cart */
   initCartLocalStorage() {
     const cart: Cart = this.getCart();
-    if (Cart) {
-      this.emptyCart();
-    }
-
     /** validate that cart doesn't have nothing */
-   // if (!cart) {
+    if (Cart) {
       /** Here initialise cart with nothing */
-      // const intialCart = {
-      //   items: [],
-      // };
+      const intialCart = {
+        items: []
+      };
       /** parse the intialCart to string */
-      // const intialCartJson = JSON.stringify(intialCart);
+      const intialCartJson = JSON.stringify(intialCart);
 
       /** Here set Item into localstore */
-    //   localStorage.setItem(CART_KEY, intialCartJson);
-    // } else {
-    //   this.cart$.next(cart);
-    // }
+      localStorage.setItem(CART_KEY, intialCartJson);
+      this.cart$.next(intialCart);
+    }
+    this.cart$.next(cart);
+
   }
 
   /** here we get the item from the localstore */
@@ -44,17 +41,17 @@ export class CartService {
     const cart = this.getCart();
 
     /** we validate if the cartItemId is the same that itemProductId to increase the quantity */
-    const cartItemExist = cart.items?.find(
+    const cartItemExist = cart.items.find(
       (item) => item.productId === cartItem.productId
     );
     if (cartItemExist) {
-      cart.items?.map((item) => {
+      cart.items.map((item) => {
         if (item.productId === cartItem.productId) {
           item.quantity = item.quantity + cartItem.quantity;
         }
       });
     } else {
-      cart.items?.push(cartItem);
+      cart.items.push(cartItem);
     }
 
     /** before you push cartItems to cart you need to send the information to localstore*/
@@ -64,12 +61,12 @@ export class CartService {
     return cart;
   }
 
-  emptyCart() {
+/*   emptyCart() {
     const intialCart = {
       items: []
     };
     const intialCartJson = JSON.stringify(intialCart);
     localStorage.setItem(CART_KEY, intialCartJson);
     this.cart$.next(intialCart);
-  }
+  } */
 }
