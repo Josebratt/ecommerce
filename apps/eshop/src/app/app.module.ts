@@ -1,3 +1,4 @@
+import { OrdersModule } from './../../../../libs/orders/src/lib/orders.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -27,6 +28,7 @@ const routes: Routes = [
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
+    OrdersModule,
     ProductsModule,
     UiModule,
     PrimengModule
