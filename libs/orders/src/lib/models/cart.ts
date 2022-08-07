@@ -1,3 +1,4 @@
+import { Product } from '@ecommerce/products';
 export class Cart {
   items: CartItem[] = [];
 }
@@ -8,6 +9,6 @@ export class CartItem {
 }
 
 export class CartItemDetailed {
-  product?: any;
+  product: Product[] = [];
   quantity = 0;
 }
