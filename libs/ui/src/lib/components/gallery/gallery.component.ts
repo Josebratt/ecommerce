@@ -10,9 +10,7 @@ export class GalleryComponent implements OnInit {
 
   @Input() images: string[] = [];
 
-  ngOnInit(): void {
-    console.log(this.hasImages);
-    
+  ngOnInit(): void {    
     if (this.hasImages) {
       this.selectedImageUrl = this.images[0];
     }
@@ -23,7 +21,6 @@ export class GalleryComponent implements OnInit {
   }
 
   get hasImages() {
-    console.log(this.images);
     return this.images.length > 0;
   }
 }
