@@ -15,7 +15,7 @@ export class CartService {
   initCartLocalStorage() {
     const cart: Cart = this.getCart();
     /** validate that cart doesn't have nothing */
-    if (Cart) {
+    if (!Cart) {
       /** Here initialise cart with nothing */
       const intialCart = {
         items: []
@@ -25,23 +25,28 @@ export class CartService {
 
       /** Here set Item into localstore */
       localStorage.setItem(CART_KEY, intialCartJson);
-      this.cart$.next(intialCart);
     }
-    this.cart$.next(cart);
 
   }
 
   /** here we get the item from the localstore */
-  getCart() {
+/*   getCart() {
     const cart: Cart = JSON.parse(localStorage.getItem(CART_KEY) || '{}');
     return cart;
+  } */
+  getCart(): Cart {
+    const storedCart = localStorage.getItem('CART_KEY')
+    if (storedCart) 
+      return JSON.parse(storedCart) 
+    else
+      return new Cart();
   }
 
   setCartItem(cartItem: CartItem): Cart {
     const cart = this.getCart();
 
-    /** we validate if the cartItemId is the same that itemProductId to increase the quantity */
-    const cartItemExist = cart.items.find(
+    /** validate if the cartItemId is the same that itemProductId to increase the quantity */
+    const cartItemExist = cart.items?.find(
       (item) => item.productId === cartItem.productId
     );
     if (cartItemExist) {
@@ -51,7 +56,10 @@ export class CartService {
         }
       });
     } else {
-      cart.items.push(cartItem);
+      console.log(cartItem);
+      console.log(cart);
+      
+      cart.items?.push(cartItem);
     }
 
     /** before you push cartItems to cart you need to send the information to localstore*/
