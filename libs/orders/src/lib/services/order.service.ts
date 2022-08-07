@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 export class OrderService {
   
   apiURLOrders = environment.apiURL + 'orders';
+  apiURLProducts = environment.apiURL + 'products';
 
   constructor(
     private http: HttpClient
@@ -34,4 +35,9 @@ export class OrderService {
   deleteOrder(orderId: string): Observable<Order> {
     return this.http.delete<Order>(`${this.apiURLOrders}/${orderId}`);
   }
+
+  getProduct(productId: string): Observable<any> {
+    return this.http.get<any>(`${this.apiURLProducts}/${productId}`);
+  }
+
 }
