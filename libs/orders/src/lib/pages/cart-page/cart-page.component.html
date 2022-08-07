@@ -14,12 +14,14 @@
       <div class="cart-shipping p-mb-5">
         Shipping after the payment, Delivery time : 1 to 4 working days
       </div>
-      <div class="cart-item">
+      <div class="cart-item" *ngFor="let cartItem of cartItemDetailed">
         <div class="grip fluid">
-          <div class="col-2 cart-item-image"></div>
+          <div class="col-2 cart-item-image">
+            <img [src]="cartItem.product.image" [alt]="cartItem.product.name">
+          </div>
           <div class="col-7">
-            <div class="cart-item-name">product name</div>
-            <div class="cart-item-price">{{ 250 | currency }}</div>
+            <div class="cart-item-name">{{ cartItem.product.name }}</div>
+            <div class="cart-item-price">{{ cartItem.product.price | currency }}</div>
             <div class="cart-item-remove">
               <button
                 pButton
@@ -42,7 +44,7 @@
             <div class="cart-item-subtotal">
                 Subtotal:
                 <span class="cart-item-subtotal-value">{{
-                  200| currency
+                    cartItem.product.price * cartItem.quantity| currency
                 }}</span>
               </div>
           </div>
