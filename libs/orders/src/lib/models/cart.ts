@@ -9,6 +9,6 @@ export class CartItem {
 }
 
 export class CartItemDetailed {
-  product: Product[] = [];
+  product: any;
   quantity = 0;
 }
