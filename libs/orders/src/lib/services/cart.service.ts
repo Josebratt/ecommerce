@@ -12,8 +12,9 @@ export class CartService {
   cart$: BehaviorSubject<Cart> = new BehaviorSubject(this.getCart());
   
   /** we initial cart */
-  initCartLocalStorage() {
+  initCartLocalStorage() {    
     const cart: Cart = this.getCart();
+    
     /** validate that cart doesn't have nothing */
     if (!Cart) {
       /** Here initialise cart with nothing */
@@ -26,11 +27,14 @@ export class CartService {
       /** Here set Item into localstore */
       localStorage.setItem(CART_KEY, intialCartJson);
     }
+    this.cart$.next(cart);
+    console.log('cart', cart);
+    console.log('cart$', this.cart$);
 
   }
 
   /** here we get the item from the localstore */
-/*   getCart() {
+/*   getItemCart() {
     const cart: Cart = JSON.parse(localStorage.getItem(CART_KEY) || '{}');
     return cart;
   } */
@@ -44,7 +48,6 @@ export class CartService {
 
   setCartItem(cartItem: CartItem): Cart {
     const cart = this.getCart();
-
     /** validate if the cartItemId is the same that itemProductId to increase the quantity */
     const cartItemExist = cart.items?.find(
       (item) => item.productId === cartItem.productId
@@ -55,17 +58,16 @@ export class CartService {
           item.quantity = item.quantity + cartItem.quantity;
         }
       });
-    } else {
-      console.log(cartItem);
-      console.log(cart);
-      
+    } else {      
       cart.items?.push(cartItem);
     }
-
+    console.log(cart);
     /** before you push cartItems to cart you need to send the information to localstore*/
     const cartJson = JSON.stringify(cart);
     localStorage.setItem(CART_KEY, cartJson);
-    this.cart$.next(cart);
+    console.log(cart);
+    
+/*     this.cart$.next(cart); */
     return cart;
   }
 
