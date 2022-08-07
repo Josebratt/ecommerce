@@ -23,6 +23,7 @@
 /* Apps libraries */
 @import url('./libs/ui/ui.css');
 @import url('./libs/products/products.css');
+@import url('./libs/orders/orders.css');
 
 .container {
     width: 1200px;
