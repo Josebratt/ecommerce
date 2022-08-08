@@ -16,7 +16,7 @@ export class CartService {
     const cart: Cart = this.getCart();
     
     /** validate that cart doesn't have nothing */
-    if (!Cart) {
+    if (!cart) {
       /** Here initialise cart with nothing */
       const intialCart = {
         items: []
