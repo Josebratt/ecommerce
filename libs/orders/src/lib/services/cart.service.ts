@@ -14,37 +14,33 @@ export class CartService {
   /** we initial cart */
   initCartLocalStorage() {    
     const cart: Cart = this.getCart();
-    
     /** validate that cart doesn't have nothing */
-    if (!cart) {
+    if (!cart.items?.length) {
       /** Here initialise cart with nothing */
       const intialCart = {
         items: []
       };
+
       /** parse the intialCart to string */
       const intialCartJson = JSON.stringify(intialCart);
 
       /** Here set Item into localstore */
       localStorage.setItem(CART_KEY, intialCartJson);
     }
-    this.cart$.next(cart);
-    console.log('cart', cart);
-    console.log('cart$', this.cart$);
-
   }
 
   /** here we get the item from the localstore */
-/*   getItemCart() {
-    const cart: Cart = JSON.parse(localStorage.getItem(CART_KEY) || '{}');
+  getCart(): Cart  {
+    const cart = JSON.parse(localStorage.getItem(CART_KEY) || '{}');   
     return cart;
-  } */
-  getCart(): Cart {
+  }
+/*   getCart(): Cart {
     const storedCart = localStorage.getItem('CART_KEY')
     if (storedCart) 
       return JSON.parse(storedCart) 
     else
       return new Cart();
-  }
+  } */
 
   setCartItem(cartItem: CartItem): Cart {
     const cart = this.getCart();
@@ -61,13 +57,12 @@ export class CartService {
     } else {      
       cart.items?.push(cartItem);
     }
-    console.log(cart);
+    
     /** before you push cartItems to cart you need to send the information to localstore*/
     const cartJson = JSON.stringify(cart);
     localStorage.setItem(CART_KEY, cartJson);
-    console.log(cart);
     
-/*     this.cart$.next(cart); */
+    this.cart$.next(cart);
     return cart;
   }
 
