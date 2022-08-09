@@ -11,11 +11,11 @@
       <div>
         <h4>My Cart: Item(s)</h4>
       </div>
-      <div class="cart-shipping p-mb-5">
+      <div class="cart-shipping mb-5">
         Shipping after the payment, Delivery time : 1 to 4 working days
       </div>
       <div class="cart-item" *ngFor="let cartItem of cartItemDetailed">
-        <div class="grip fluid">
+        <div class="grid fluid">
           <div class="col-2 cart-item-image">
             <img [src]="cartItem.product.image" [alt]="cartItem.product.name">
           </div>
@@ -30,14 +30,15 @@
               ></button>
             </div>
           </div>
-          <div class="col-3">
-            <div class="p-field cart-item-quantity">
+          <div class="col-2">
+            <div class="field cart-item-quantity">
               <p-inputNumber
                 mode="decimal"
                 [showButtons]="true"
                 inputId="quantity"
                 [min]="1"
                 [max]="100"
+                [size]="5"
               >
               </p-inputNumber>
             </div>
@@ -51,8 +52,9 @@
         </div>
       </div>
     </div>
+    <div class="col-4">
+      <h4>here go the sumary</h4>
+    </div>
   </div>
-  <div class="col-4">
-    <h4>here go the sumary</h4>
-  </div>
+ 
 </div>
