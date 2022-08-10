@@ -35,10 +35,12 @@
               <p-inputNumber
                 mode="decimal"
                 [showButtons]="true"
-                inputId="quantity"
+                [inputId]="cartItem.product.id"
                 [min]="1"
                 [max]="100"
                 [size]="5"
+                [(ngModel)]="cartItem.quantity"
+                (onInput)="updateCartItemQuantity($event, cartItem)"
               >
               </p-inputNumber>
             </div>
