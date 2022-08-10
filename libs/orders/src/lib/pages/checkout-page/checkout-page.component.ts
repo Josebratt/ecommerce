@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { OrderItem } from '@ecommerce/orders';
+import { CartService, OrderItem, OrderService } from '@ecommerce/orders';
+import { UsersService } from '@ecommerce/users';
 
 @Component({
   selector: 'orders-checkout-page',
@@ -13,13 +14,19 @@ export class CheckoutPageComponent implements OnInit {
   isSubmitted = false;
   orderItems: OrderItem[] = [];
   userId = '609d65943373711346c5e950';
-  countries = [];
-  formBuilder: any;
+  countries: unknown[] = [];;
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private usersService: UsersService,
+    private formBuilder: FormBuilder,
+    private cartService: CartService,
+    private orderService: OrderService
+    ) {}
 
   ngOnInit(): void {
     this._initCheckoutForm();
+    this._getcontries();
   }
 
   private _initCheckoutForm() {
@@ -33,6 +40,10 @@ export class CheckoutPageComponent implements OnInit {
       apartment: ['', Validators.required],
       street: ['', Validators.required],
     });
+  }
+
+  private _getcontries() {
+    this.countries = this.usersService.getCountries();
   }
 
   placeOrder() {}
