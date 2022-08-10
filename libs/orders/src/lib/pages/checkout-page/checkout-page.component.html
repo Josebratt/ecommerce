@@ -14,7 +14,7 @@
                     </div>
                     <div class="field col-4">
                         <label for="email">Email</label>
-                        <input formControlName="email" id="email" type="text" pInputText />
+                        <input formControlName="email" id="email" type="text" pInputText /> <br>
                         <small *ngIf="formControl['email'].invalid && isSubmitted" class="p-error"><span
                                 *ngIf="formControl['email'].errors!['required']">email is required</span>
                             <span *ngIf="formControl['email'].errors!['email']">email is invalid</span></small>
@@ -42,19 +42,19 @@
                     </div>
                     <div class="field col-4">
                         <label for="street">Zip Code</label>
-                        <input formControlName="zip" id="zip" type="text" pInputText />
+                        <input formControlName="zip" id="zip" type="text" pInputText /><br>
                         <small *ngIf="formControl['zip'].invalid && isSubmitted" class="p-error">Zip is required</small>
                     </div>
                     <div class="field col-4">
                         <label for="city">City</label><br>
-                        <input formControlName="city" id="city" type="text" pInputText />
+                        <input formControlName="city" id="city" type="text" pInputText /><br>
                         <small *ngIf="formControl['city'].invalid && isSubmitted" class="p-error">City is required</small>
                     </div>
                     <div class="field col-4">
                         <label for="country">Country</label><br>
                         <p-dropdown [options]="countries" formControlName="country" optionLabel="name" optionValue="id"
                             [filter]="true" filterBy="name" [showClear]="true" placeholder="Select a Country">
-                        </p-dropdown>
+                        </p-dropdown><br>
                         <small *ngIf="formControl['country'].invalid && isSubmitted" class="p-error">Country is
                             required</small>
                     </div>
