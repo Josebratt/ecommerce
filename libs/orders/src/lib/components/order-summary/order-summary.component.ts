@@ -17,7 +17,9 @@ export class OrderSummaryComponent implements OnInit, OnDestroy {
     private router: Router,
     private cartService: CartService,
     private orderService: OrderService
-  ) {}
+  ) {
+    this.router.url.includes('checkout') ? (this.isCheckout = true) : (this.isCheckout = false);
+  }
 
   ngOnInit(): void {
     this._getOrderSummary();
