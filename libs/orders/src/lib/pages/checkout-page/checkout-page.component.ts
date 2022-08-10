@@ -46,7 +46,12 @@ export class CheckoutPageComponent implements OnInit {
     this.countries = this.usersService.getCountries();
   }
 
-  placeOrder() {}
+  placeOrder() {
+    this.isSubmitted = true;
+    if (this.checkoutFormGroup.invalid) {
+      return;
+    }
+  }
 
   backToCart() {
     this.router.navigate(['/cart']);
