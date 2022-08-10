@@ -14,16 +14,32 @@ import { CartPageComponent } from './pages/cart-page/cart-page.component';
 import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
 import { CheckoutPageComponent } from './pages/checkout-page/checkout-page.component';
 
-
-
 const routes: Routes = [
   { path: 'cart', component: CartPageComponent },
-]
+  { path: 'checkout', component: CheckoutPageComponent },
+];
 
 @NgModule({
-  imports: [CommonModule, FormsModule, RouterModule.forChild(routes), BadgeModule, ButtonModule, InputNumberModule],
-  declarations: [CartIconComponent, CartPageComponent, OrderSummaryComponent, CheckoutPageComponent],
-  exports: [CartIconComponent, CartPageComponent, OrderSummaryComponent, CheckoutPageComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterModule.forChild(routes),
+    BadgeModule,
+    ButtonModule,
+    InputNumberModule,
+  ],
+  declarations: [
+    CartIconComponent,
+    CartPageComponent,
+    OrderSummaryComponent,
+    CheckoutPageComponent,
+  ],
+  exports: [
+    CartIconComponent,
+    CartPageComponent,
+    OrderSummaryComponent,
+    CheckoutPageComponent,
+  ],
 })
 export class OrdersModule {
   constructor(cartService: CartService) {
