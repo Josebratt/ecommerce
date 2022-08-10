@@ -42,7 +42,7 @@ export class CartService {
       return new Cart();
   } */
 
-  setCartItem(cartItem: CartItem): Cart {
+  setCartItem(cartItem: CartItem, updateCartItem?: boolean ): Cart {
     const cart = this.getCart();
     /** validate if the cartItemId is the same that itemProductId to increase the quantity */
     const cartItemExist = cart.items?.find(
@@ -51,7 +51,11 @@ export class CartService {
     if (cartItemExist) {
       cart.items.map((item) => {
         if (item.productId === cartItem.productId) {
-          item.quantity = item.quantity + cartItem.quantity;
+          if (updateCartItem) {
+            item.quantity = cartItem.quantity;
+          } else {
+            item.quantity = item.quantity + cartItem.quantity;
+          }  
         }
       });
     } else {      
