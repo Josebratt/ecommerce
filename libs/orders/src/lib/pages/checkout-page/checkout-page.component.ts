@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CartService, OrderItem, OrderService } from '@ecommerce/orders';
+import { Cart, CartService, OrderItem, OrderService } from '@ecommerce/orders';
 import { UsersService } from '@ecommerce/users';
 
 @Component({
@@ -26,6 +26,7 @@ export class CheckoutPageComponent implements OnInit {
 
   ngOnInit(): void {
     this._initCheckoutForm();
+    this._getCartItems();
     this._getcontries();
   }
 
@@ -40,6 +41,21 @@ export class CheckoutPageComponent implements OnInit {
       apartment: ['', Validators.required],
       street: ['', Validators.required],
     });
+  }
+
+  private _getCartItems() {
+    const cart: Cart = this.cartService.getCart();
+    this.orderItems = cart.items.map(
+      item => {
+        return {
+        product: item.productId,
+        quantity: item.quantity
+      }
+    }
+    ) as any;
+
+    console.log(this.orderItems);
+    
   }
 
   private _getcontries() {
