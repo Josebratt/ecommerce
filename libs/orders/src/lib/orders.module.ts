@@ -17,10 +17,12 @@ import { CartPageComponent } from './pages/cart-page/cart-page.component';
 import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
 import { CheckoutPageComponent } from './pages/checkout-page/checkout-page.component';
 import { InputTextModule } from 'primeng/inputtext';
+import { ThankYouComponent } from './pages/thank-you/thank-you.component';
 
 const routes: Routes = [
   { path: 'cart', component: CartPageComponent },
   { path: 'checkout', component: CheckoutPageComponent },
+  { path: 'success', component: ThankYouComponent }
 ];
 
 @NgModule({
@@ -41,12 +43,14 @@ const routes: Routes = [
     CartPageComponent,
     OrderSummaryComponent,
     CheckoutPageComponent,
+    ThankYouComponent,
   ],
   exports: [
     CartIconComponent,
     CartPageComponent,
     OrderSummaryComponent,
     CheckoutPageComponent,
+    ThankYouComponent,
   ],
 })
 export class OrdersModule {
