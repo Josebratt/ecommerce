@@ -1,8 +1,10 @@
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 import { OrdersModule } from './../../../../libs/orders/src/lib/orders.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
@@ -15,7 +17,7 @@ import { NavComponent } from './shared/nav/nav.component';
 
 import { UiModule } from '@ecommerce/ui';
 import { ProductsModule } from '@ecommerce/products';
-import { UsersModule } from '@ecommerce/users';
+import { JwtInterceptor, UsersModule } from '@ecommerce/users';
 
 
 const routes: Routes = [
@@ -29,13 +31,15 @@ const routes: Routes = [
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
     OrdersModule,
     ProductsModule,
     UiModule,
     PrimengModule,
     UsersModule
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
