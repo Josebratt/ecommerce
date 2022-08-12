@@ -18,10 +18,11 @@ import { OrderSummaryComponent } from './components/order-summary/order-summary.
 import { CheckoutPageComponent } from './pages/checkout-page/checkout-page.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { ThankYouComponent } from './pages/thank-you/thank-you.component';
+import { AuthGuard } from '@ecommerce/users';
 
 const routes: Routes = [
   { path: 'cart', component: CartPageComponent },
-  { path: 'checkout', component: CheckoutPageComponent },
+  { path: 'checkout', canActivate: [AuthGuard], component: CheckoutPageComponent },
   { path: 'success', component: ThankYouComponent }
 ];
 
