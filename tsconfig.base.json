@@ -19,8 +19,7 @@
       "@ecommerce/products": ["libs/products/src/index.ts"],
       "@ecommerce/ui": ["libs/ui/src/index.ts"],
       "@ecommerce/users": ["libs/users/src/index.ts"],
-      "@env/*":["environments/*"]
-      
+      "@env/*": ["environments/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]

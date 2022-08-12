@@ -7,25 +7,32 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 
 import { LoginComponent } from './pages/login/login.component';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import * as fromUsers from './+state/users.reducer';
+import { UsersEffects } from './+state/users.effects';
+import { UsersFacade } from './+state/users.facade';
 
 const routes: Routes = [
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
   },
-  { path: '**', pathMatch: 'full', redirectTo: '' }
+  { path: '**', pathMatch: 'full', redirectTo: '' },
 ];
 
 @NgModule({
   imports: [
-    CommonModule, 
+    CommonModule,
     RouterModule.forChild(routes),
     FormsModule,
     ReactiveFormsModule,
     InputTextModule,
-    ButtonModule],
-  declarations: [
-    LoginComponent
+    ButtonModule,
+    StoreModule.forFeature(fromUsers.USERS_FEATURE_KEY, fromUsers.usersReducer),
+    EffectsModule.forFeature([UsersEffects]),
   ],
+  declarations: [LoginComponent],
+  providers: [UsersFacade],
 })
 export class UsersModule {}
