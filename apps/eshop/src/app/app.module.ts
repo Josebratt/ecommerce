@@ -15,6 +15,7 @@ import { NavComponent } from './shared/nav/nav.component';
 
 import { UiModule } from '@ecommerce/ui';
 import { ProductsModule } from '@ecommerce/products';
+import { UsersModule } from '@ecommerce/users';
 
 
 const routes: Routes = [
@@ -31,7 +32,8 @@ const routes: Routes = [
     OrdersModule,
     ProductsModule,
     UiModule,
-    PrimengModule
+    PrimengModule,
+    UsersModule
   ],
   providers: [],
   bootstrap: [AppComponent],
