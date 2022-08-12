@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Cart, CartService, OrderItem, OrderService } from '@ecommerce/orders';
+import { Cart, CartService, Order, OrderItem, OrderService } from '@ecommerce/orders';
 import { UsersService } from '@ecommerce/users';
 
 @Component({
@@ -67,6 +67,30 @@ export class CheckoutPageComponent implements OnInit {
     if (this.checkoutFormGroup.invalid) {
       return;
     }
+
+/*     const order: Order = {
+      orderItems: this.orderItems,
+      shippingAddress1: this.formControl['street'].value,
+      shippingAddress2: this.formControl['apartment'].value,
+      city: this.formControl['city'].value,
+      zip: this.formControl['zip'].value,
+      country: this.formControl['country'].value,
+      phone: this.formControl['phone'].value,
+      status: 0,
+      user: this.userId,
+      dateOrdered: `${Date.now()}`
+    }; */
+
+   /*  this.orderService.createOrder(order).subscribe(
+      () => {
+        //redirect to thank you page // payment
+        this.cartService.emptyCart();
+        this.router.navigate(['/success']);
+      },
+      () => {
+        //display some message to user
+      }
+    ); */
   }
 
   backToCart() {
