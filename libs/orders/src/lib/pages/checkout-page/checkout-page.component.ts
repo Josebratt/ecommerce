@@ -1,3 +1,4 @@
+import { Subject, takeUntil } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -15,6 +16,7 @@ export class CheckoutPageComponent implements OnInit {
   orderItems: OrderItem[] = [];
   userId = '609d65943373711346c5e950';
   countries: unknown[] = [];;
+  unsubs$: Subject<any> = new Subject();
 
   constructor(
     private router: Router,
@@ -26,6 +28,7 @@ export class CheckoutPageComponent implements OnInit {
 
   ngOnInit(): void {
     this._initCheckoutForm();
+    this._autoFillUserData();
     this._getCartItems();
     this._getcontries();
   }
@@ -41,6 +44,27 @@ export class CheckoutPageComponent implements OnInit {
       apartment: ['', Validators.required],
       street: ['', Validators.required],
     });
+  }
+
+  private _autoFillUserData() {
+    this.usersService
+      .observeCurrentUser()
+      .pipe(takeUntil(this.unsubs$))
+      .subscribe((user) => {
+        if (user) {
+          this.userId = user.id as string;
+          this.formControl['name'].setValue(user.name);
+          this.formControl['email'].setValue(user.email);
+          this.formControl['phone'].setValue(user.phone);
+          this.formControl['city'].setValue(user.city);
+          this.formControl['street'].setValue(user.street);
+          this.formControl['country'].setValue(user.country);
+          this.formControl['zip'].setValue(user.zip);
+          this.formControl['apartment'].setValue(user.apartment);
+        }
+        console.log(user);
+        
+      });
   }
 
   private _getCartItems() {
