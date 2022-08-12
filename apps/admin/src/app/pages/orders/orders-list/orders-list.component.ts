@@ -1,9 +1,8 @@
 import { Subject, takeUntil, timer } from 'rxjs';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { Order } from '@ecommerce/orders';
+import { Order, ORDER_STATUS } from '@ecommerce/orders';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { ORDER_STATUS } from '../order.constants';
 import { OrderService } from '@ecommerce/orders';
 import { Location } from '@angular/common';
 
