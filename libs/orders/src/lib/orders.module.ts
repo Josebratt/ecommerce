@@ -11,7 +11,6 @@ import { BadgeModule } from 'primeng/badge';
 import { ButtonModule } from 'primeng/button';
 import { InputNumberModule } from 'primeng/inputnumber';
 
-
 import { CartIconComponent } from './components/cart-icon/cart-icon.component';
 import { CartPageComponent } from './pages/cart-page/cart-page.component';
 import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
@@ -22,8 +21,12 @@ import { AuthGuard } from '@ecommerce/users';
 
 const routes: Routes = [
   { path: 'cart', component: CartPageComponent },
-  { path: 'checkout', canActivate: [AuthGuard], component: CheckoutPageComponent },
-  { path: 'success', component: ThankYouComponent }
+  {
+    path: 'checkout',
+    canActivate: [AuthGuard],
+    component: CheckoutPageComponent,
+  },
+  { path: 'success', component: ThankYouComponent },
 ];
 
 @NgModule({
@@ -37,7 +40,7 @@ const routes: Routes = [
     InputMaskModule,
     InputNumberModule,
     InputTextModule,
-    DropdownModule
+    DropdownModule,
   ],
   declarations: [
     CartIconComponent,
