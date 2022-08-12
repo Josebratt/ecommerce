@@ -81,12 +81,13 @@ export class CartService {
     localStorage.setItem(CART_KEY, cartJsonString);
     this.cart$.next(cart);
   }
-/*   emptyCart() {
+  
+  emptyCart() {
     const intialCart = {
       items: []
     };
     const intialCartJson = JSON.stringify(intialCart);
     localStorage.setItem(CART_KEY, intialCartJson);
     this.cart$.next(intialCart);
-  } */
+  }
 }
