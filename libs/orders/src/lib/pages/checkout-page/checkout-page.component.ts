@@ -1,5 +1,5 @@
 import { Subject, takeUntil } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Cart, CartService, Order, OrderItem, OrderService } from '@ecommerce/orders';
@@ -10,11 +10,11 @@ import { UsersService } from '@ecommerce/users';
   templateUrl: './checkout-page.component.html',
   styles: [],
 })
-export class CheckoutPageComponent implements OnInit {
+export class CheckoutPageComponent implements OnInit, OnDestroy {
   checkoutFormGroup!: FormGroup;
   isSubmitted = false;
   orderItems: OrderItem[] = [];
-  userId = '609d65943373711346c5e950';
+  userId = '';
   countries: unknown[] = [];;
   unsubs$: Subject<any> = new Subject();
 
@@ -31,6 +31,11 @@ export class CheckoutPageComponent implements OnInit {
     this._autoFillUserData();
     this._getCartItems();
     this._getcontries();
+  }
+
+  ngOnDestroy(): void {
+    this.unsubs$.next(true);
+    this.unsubs$.complete();
   }
 
   private _initCheckoutForm() {
@@ -61,9 +66,7 @@ export class CheckoutPageComponent implements OnInit {
           this.formControl['country'].setValue(user.country);
           this.formControl['zip'].setValue(user.zip);
           this.formControl['apartment'].setValue(user.apartment);
-        }
-        console.log(user);
-        
+        }        
       });
   }
 
