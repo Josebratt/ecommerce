@@ -2,7 +2,7 @@ import { OrderItem } from './order-item';
 import { User } from '@ecommerce/users';
 
 export class Order {
-  id='';
+  id?:string;
   orderItems: OrderItem[] = [];
   shippingAddress1?: string;
   shippingAddress2?: string;
@@ -12,6 +12,6 @@ export class Order {
   phone?: string;
   status?: number;
   totalPrice?: string;
-  user = new User;
+  user: any;
   dateOrdered?: string;
 }
