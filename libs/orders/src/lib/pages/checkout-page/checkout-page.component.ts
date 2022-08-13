@@ -95,7 +95,7 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
       return;
     }
 
-/*     const order: Order = {
+    const order: Order = {
       orderItems: this.orderItems,
       shippingAddress1: this.formControl['street'].value,
       shippingAddress2: this.formControl['apartment'].value,
@@ -106,9 +106,9 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
       status: 0,
       user: this.userId,
       dateOrdered: `${Date.now()}`
-    }; */
+    };
 
-   /*  this.orderService.createOrder(order).subscribe(
+    this.orderService.createOrder(order).subscribe(
       () => {
         //redirect to thank you page // payment
         this.cartService.emptyCart();
@@ -117,7 +117,7 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
       () => {
         //display some message to user
       }
-    ); */
+    );
   }
 
   backToCart() {
