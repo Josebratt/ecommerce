@@ -53,7 +53,7 @@ export class OrdersDetailsComponent implements OnInit {
 
   onStatusChange(event: any) {
     this.orderService
-      .updateOrder({ status: event.value }, this.order.id)
+      .updateOrder({ status: event.value }, this.order.id as string)
       .pipe(takeUntil(this.endsubs$))
       .subscribe({
         next: () => {
